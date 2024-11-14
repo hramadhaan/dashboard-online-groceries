@@ -11,7 +11,9 @@
   },
   "dependencies": {
     "@hebilicious/vue-query-nuxt": "^0.3.0",
+    "@nuxt/image": "^1.8.1",
     "@nuxtjs/tailwindcss": "^6.12.1",
+    "@sidebase/nuxt-auth": "^0.9.4",
     "@tanstack/vue-query": "^5.56.2",
     "@tanstack/vue-query-devtools": "^5.56.2",
     "@tiptap/extension-placeholder": "^2.8.0",
@@ -25,6 +27,7 @@
     "clsx": "^2.1.1",
     "lodash": "^4.17.21",
     "lucide-vue-next": "^0.437.0",
+    "next-auth": "4.21.1",
     "nuxt": "^3.13.0",
     "nuxt-tiptap-editor": "^2.0.0",
     "radix-vue": "^1.9.5",

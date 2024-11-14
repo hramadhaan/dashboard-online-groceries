@@ -297,7 +297,6 @@
 import {
   FilterIcon,
   DownloadIcon,
-  CalendarIcon,
   BanknoteIcon,
   ArrowUpRightIcon,
   ArrowUpIcon,
@@ -344,6 +343,10 @@ const data = [
     predicted: Math.floor(Math.random() * 2000) + 500,
   },
 ];
+
+const { data: dataAuth } = useAuth()
+
+console.log('Data: ', dataAuth.value)
 </script>
 
 <style></style>

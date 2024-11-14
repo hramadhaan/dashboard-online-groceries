@@ -169,10 +169,7 @@ const { mutate: mutateThirdCatData } = mutateThirdCategoryData();
 // Form
 const formSchema = toTypedSchema(
   z.object({
-    name: z
-      .string()
-      .min(2, { message: "Must be at least 2 characters" })
-      .max(50, { message: "Must be 50 characters or less" }),
+    name: z.string().min(2, { message: "Must be at least 2 characters" }),
     description: z
       .string()
       .min(2, { message: "Must be at least 2 characters" }),
@@ -239,7 +236,7 @@ const handleChange = (event: any) => {
 
 // Handle UI
 const { toast } = useToast();
-
+const { data: dataAuth } = useAuth();
 const valueCatOne = computed(() => {
   const tempData: SelectForm[] = [];
   if (data.value && data.value.length > 0) {
@@ -300,7 +297,12 @@ const onSubmit = handleSubmit((values) => {
   console.log("Value Images: ", values.image);
 
   instance
-    .post("/product/add", formData)
+    .post("/product/add", formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+        Authorization: `${dataAuth.value?.user.token}`,
+      },
+    })
     .then((result) => {
       if (result.status === 201) {
         toast({
@@ -309,7 +311,13 @@ const onSubmit = handleSubmit((values) => {
       }
     })
     .catch((err) => {
-      console.log("Error: ", err);
+      toast({
+        variant: "destructive",
+        title: err?.code ?? "Terjadi Kesalahan",
+        description:
+          err?.message ??
+          "Tidak dapat menambahkan produk ini, silahkan coba lagi.",
+      });
     });
 });
 </script>

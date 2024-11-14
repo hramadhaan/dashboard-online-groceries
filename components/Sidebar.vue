@@ -124,7 +124,7 @@
           </ItemListHeader>
         </template>
         <template #content>
-          <ItemListHeader name="Diskon">
+          <ItemListHeader name="Diskon" to="/discount">
             <template #icon>
               <PercentIcon class="size-4" />
             </template>

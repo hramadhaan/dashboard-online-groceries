@@ -9,13 +9,22 @@ export default defineNuxtConfig({
     },
   },
   css: ["~/assets/css/tailwind.css"],
+  runtimeConfig: {
+    authSecret: "O6DmLVj5VJAIppm",
+  },
   postcss: {
     plugins: {
       tailwindcss: {},
       autoprefixer: {},
     },
   },
-  modules: ["@nuxtjs/tailwindcss", "shadcn-nuxt", "nuxt-tiptap-editor"],
+  modules: [
+    "@nuxtjs/tailwindcss",
+    "shadcn-nuxt",
+    "nuxt-tiptap-editor",
+    "@nuxt/image",
+    "@sidebase/nuxt-auth",
+  ],
   shadcn: {
     /**
      * Prefix for all the imported component
@@ -30,4 +39,8 @@ export default defineNuxtConfig({
   tiptap: {
     prefix: "Tiptap",
   },
+  auth: {
+    globalAppMiddleware: true,
+  },
+  image: {},
 });

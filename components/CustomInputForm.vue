@@ -1,5 +1,5 @@
 <template>
-  <FormField v-slot="{ componentField }" :name="props.name" class="w-full">
+  <FormField v-slot="{ componentField }" :name="props.name" class="min-w-full">
     <FormItem>
       <FormLabel>{{ props.title }}</FormLabel>
       <FormControl>
@@ -8,6 +8,7 @@
           :accept="props.type === 'file' ? props.accept : ''"
           :placeholder="props.placeholder"
           class="w-full"
+          :class="props.class"
           v-bind="componentField"
           :multiple="isMultiple"
           @change="props.handleChange"
@@ -27,6 +28,7 @@ const props = defineProps<{
   handleChange?: (value: string) => void;
   multipleImage?: boolean;
   accept?: string;
+  class?: string;
 }>();
 
 const isMultiple = computed(() => {

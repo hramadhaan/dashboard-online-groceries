@@ -109,7 +109,7 @@ const formSchema = toTypedSchema(
   })
 );
 
-const { handleSubmit, values } = useForm({
+const { handleSubmit, values, resetForm } = useForm({
   validationSchema: formSchema,
 });
 
@@ -118,6 +118,8 @@ console.log("rerender");
 const showCategoryTwo = ref(false);
 const imageValue = ref();
 const previewImage = ref();
+
+const { data: dataAuth } = useAuth();
 
 interface InputFileEvent extends Event {
   target: HTMLInputElement;
@@ -181,9 +183,15 @@ const onSubmit = handleSubmit((values) => {
   }
 
   instance
-    .post("/category/add", formData)
+    .post("/category/add", formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+        Authorization: `${dataAuth.value?.user.token}`,
+      },
+    })
     .then((result) => {
       if (result.status === 201) {
+        resetForm();
         toast({
           title: "Kategori berhasil ditambahkan.",
         });

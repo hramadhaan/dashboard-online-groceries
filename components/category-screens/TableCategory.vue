@@ -20,7 +20,12 @@
         <TableCell>{{ item.parent ?? "-" }}</TableCell>
         <TableCell>
           <div class="flex flex-row gap-x-2">
-            <Button size="sm" variant="destructive">Remove</Button>
+            <Button
+              size="sm"
+              variant="destructive"
+              @click="handleDelete(item._id)"
+              >Remove</Button
+            >
             <Button size="sm">Edit</Button>
           </div>
         </TableCell>
@@ -30,7 +35,14 @@
 </template>
 
 <script lang="ts" setup>
+
 const { data } = getCategoryData();
+const { mutate, reset, error } = deleteCategory();
+
+
+const handleDelete = async (id: string) => {
+  mutate(id);
+};
 </script>
 
 <style></style>
